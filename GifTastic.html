@@ -1,0 +1,130 @@
+<!-- INSTRUCTIONS: 
+Your app should take the topics in this array and create buttons in your HTML.
+Try using a loop that appends a button for each string in the array.
+When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page.
+When the user clicks one of the still GIPHY images, the gif should animate. If the user clicks the gif again, it should stop playing.
+Under every gif, display its rating (PG, G, so on).
+Only once you get images displaying with button presses should you move on to the next step.
+Add a form to your page takes the value from a user input box and adds it into your topics array. Then make a function call that takes each topic in the array remakes the buttons on the page. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Favorite Disney GIF's</title>
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+  <style type="text/css">
+    button,
+    div,
+    form,
+    input {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+	<div id = container>
+		<h2>Disney GIF Search</h2>
+
+	<!-- buttons go here -->	
+	<div id = "buttonlocation"></div>
+
+	<button data-name="ariel">ariel</button>
+
+
+	<form id ="inputCharachter">
+		<label for = "addCast">Add A Disney Character!</label>
+		<input type="text" id="addCast">
+
+	 	<!-- Button triggers new cast to be added -->
+	 	<input type="submit" id = "addButton" value="submit">
+
+	</form>
+
+	<div id = "gif-view"></div>
+
+
+	<script type="text/javascript">
+      
+    //Initial array of characters
+    var characters = ["Mickey Mouse", "Belle", "Nemo", "The Aristocats", "Steamboat Willie", "Minnie Mouse", "Ariel", "Olaf Disney", "Donald Duck", "Pluto Disney", "Buzz Lightyear", "Ligntning McQueen", "Chewbacca", "Alladin", "Han Solo", "Genie in Alladin"];
+
+    
+      
+    //make buttons then put them on the page
+    // function makeButtons(){
+
+    //   	//prevent repeats and delete cast before adding more
+    //   	$("#buttonlocation").empty();
+
+    //   	//loop through array and create buttons for each character, then put buttons on page
+    //   	for (var i = 0, i < characters.length; i++ ){
+    //   		var disney = $("<button>");
+    //   		disney.addClass(makeMagic);
+    //   		disney.attr("data-type", characters[i]);
+    //   		disney.text(characters[i]);
+    //   		$("#buttonlocation").append(disney);
+
+
+    //   	}
+
+    //   }
+
+    //displays the GIFs on the html. limited to 10 
+  	$("button").on("click",function(){
+
+  		var cast = $(this).attr("data-name");
+    	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + cast + "&api_key=dc6zaTOxFJmzC&limit=10";
+
+    	$.ajax({
+    		url:queryURL,
+    		method: "get"
+    	}).done(function(response){
+
+    	var results = response.data;   //accesses info inside data key
+
+    	for (var i = 0; i < results.length; i++){
+    		var castDiv = $("<div class = 'castDiv'>")  //create a new div
+
+    		var p = $("<p>").text("Rating: " + rating)  //put rating on page
+    		var rating = results[i].rating;             //this is where the rating info is located
+
+    		var castImg = $("<img>");
+    		castImg.attr("src", results[i].images.fixed_height.url);
+    		castDiv.append(p);
+    		castDiv.append(castImg);
+
+    		$("#gif-view").prepend(castDiv);
+
+    	}
+
+
+    	});
+
+      });
+
+		
+	</script>
+	</div>
+
+  
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
