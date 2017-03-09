@@ -5,19 +5,20 @@ When the user clicks on a button, the page should grab 10 static, non-animated g
 When the user clicks one of the still GIPHY images, the gif should animate. If the user clicks the gif again, it should stop playing.
 Under every gif, display its rating (PG, G, so on).
 Only once you get images displaying with button presses should you move on to the next step.
-Add a form to your page takes the value from a user input box and adds it into your topics array. Then make a function call that takes each topic in the array remakes the buttons on the page. -->
+Add a form to your page takes the value from a user input box and adds it into your topics array. 
+Then make a function call that takes each topic in the array remakes the buttons on the page. -->
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Favorite Disney GIF's</title>
+    <meta charset="utf-8">
+    <title>Favorite Disney GIF's</title>
 
-  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="reset.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 
@@ -28,15 +29,15 @@ Add a form to your page takes the value from a user input box and adds it into y
 	<!-- buttons go here -->	
 	<div id = "buttonlocation"></div>
 
-	<button data-name="ariel">ariel</button>
+	<!-- <button data-name="ariel">ariel</button> -->
 
 
 	<form id ="inputCharacter">
 		<label for = "addCast">Add A Disney Character!</label>
 		<input type="text" id="addCast">
 
-	 	<!-- Button triggers new cast to be added -->
-	 	<input type="submit" id = "addButton" value="submit">
+		<!-- Button triggers new cast to be added -->
+		<input type="submit" id = "addButton" value="submit">
 
 	</form>
 
